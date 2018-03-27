@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Field.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FieldBuilder.cs" />
+    <Compile Include="GameArea.cs" />
+    <Compile Include="GameManager.cs" />
     <Compile Include="XonixGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +68,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="XonixGame.resx">
+      <DependentUpon>XonixGame.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -74,6 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
