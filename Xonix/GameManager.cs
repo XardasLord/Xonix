@@ -27,5 +27,10 @@ namespace Xonix
         {
             gameArea.GenerateMap(xonixGraphic);
         }
+
+        private void SpawnPlayer()
+        {
+
+        }
     }
 }

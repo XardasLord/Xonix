@@ -7,8 +7,11 @@ namespace Xonix
         private const int FIELD_SIZE = 10;
         private const int FIELD_WIDTH = 20;
         private const int FIELD_HEIGHT = 20;
+        private const int PLAYER_START_X = 10;
+        private const int PLAYER_START_Y = 10;
 
         public Field[,] Fields { get; private set; }
+        public Player Player { get; private set; }
 
         private Graphics graphic;
         private int width; // Columns
@@ -27,6 +30,7 @@ namespace Xonix
 
             PrepareFields();
             DrawFields();
+            SpawnPlayer();
         }
 
         private void PrepareFields()
@@ -74,10 +78,18 @@ namespace Xonix
 
         private void DrawFields()
         {
+            graphic.Clear(Color.LightSkyBlue);
+
             foreach(var field in Fields)
             {
                 graphic.FillRectangle(new SolidBrush(field.Color), field.Location.X, field.Location.Y, FIELD_WIDTH, FIELD_HEIGHT);
             }
+        }
+
+        private void SpawnPlayer()
+        {
+            Player = new Player(PLAYER_START_X, PLAYER_START_Y, graphic);
+            Player.Draw();
         }
     }
 }

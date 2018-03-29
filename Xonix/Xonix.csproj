@@ -51,6 +51,7 @@
     <Compile Include="FieldBuilder.cs" />
     <Compile Include="GameArea.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="XonixGame.cs">
       <SubType>Form</SubType>
     </Compile>
