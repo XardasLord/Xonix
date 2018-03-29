@@ -20,7 +20,6 @@ namespace Xonix
 
         public void StartGame()
         {
-            //TODO: Spawn player, enemies and start playing
             DrawGameArea();
         }
 

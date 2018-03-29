@@ -16,6 +16,12 @@ namespace Xonix
             return this;
         }
 
+        public FieldBuilder WithLocation(int x, int y)
+        {
+            field.Location = new Point(x, y);
+            return this;
+        }
+
         public FieldBuilder WithState(FieldState state)
         {
             field.State = state;

@@ -34,14 +34,17 @@ namespace Xonix
             int tmpX = 0, tmpY = 0;
 
             for(var row = 0; row < height/FIELD_SIZE; row++)
-                for(var col = 0; col < width/FIELD_SIZE; col++)
+            {
+                for (var col = 0; col < width / FIELD_SIZE; col++)
                 {
+                    var state = SpecifyDefaultState(tmpX, tmpY);
+
                     Fields[row, col] = new FieldBuilder()
-                        .WithLocation(new Point(tmpX, tmpY))
-                        .WithState(FieldState.Free)
+                        .WithLocation(tmpX, tmpY)
+                        .WithState(state)
                         .Build();
 
-                    if(tmpX == width)
+                    if (tmpX == width)
                     {
                         // Move to the next row
                         tmpX = 0;
@@ -53,13 +56,27 @@ namespace Xonix
                         tmpX += FIELD_SIZE;
                     }
                 }
+            }
+        }
+
+        private FieldState SpecifyDefaultState(int x, int y)
+        {
+            if(x == 0 || x == 10 || y == 0 || y == 10 || x == 990 || x == 980 || y == 590 || y == 580)
+            {
+                // Map Boundary
+                return FieldState.Outside;
+            }
+            else
+            {
+                return FieldState.Free;
+            }
         }
 
         private void DrawFields()
         {
             foreach(var field in Fields)
             {
-                graphic.FillRectangle(new SolidBrush(Color.Black), field.Location.X, field.Location.Y, FIELD_WIDTH, FIELD_HEIGHT);
+                graphic.FillRectangle(new SolidBrush(field.Color), field.Location.X, field.Location.Y, FIELD_WIDTH, FIELD_HEIGHT);
             }
         }
     }
