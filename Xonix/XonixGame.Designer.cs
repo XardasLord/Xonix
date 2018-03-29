@@ -28,13 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.GameAreaPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
+            // 
+            // GameAreaPanel
+            // 
+            this.GameAreaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GameAreaPanel.Location = new System.Drawing.Point(12, 12);
+            this.GameAreaPanel.Name = "GameAreaPanel";
+            this.GameAreaPanel.Size = new System.Drawing.Size(1000, 600);
+            this.GameAreaPanel.TabIndex = 0;
+            this.GameAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.GameAreaPanel_Paint);
             // 
             // XonixGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 761);
+            this.ClientSize = new System.Drawing.Size(1024, 661);
+            this.Controls.Add(this.GameAreaPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "XonixGame";
             this.ShowIcon = false;
@@ -45,6 +58,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel GameAreaPanel;
     }
 }
 

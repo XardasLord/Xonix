@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Xonix
 {
     public partial class XonixGame : Form
     {
-        private GameManager _gameManager;
+        private GameManager gameManager;
 
         public XonixGame()
         {
             InitializeComponent();
+        }
 
-            _gameManager = new GameManager(this);
-            _gameManager.StartGame();
+        private void GameAreaPanel_Paint(object sender, PaintEventArgs e)
+        {
+            gameManager = new GameManager(this, e.Graphics);
+            gameManager.StartGame();
         }
     }
 }

@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace Xonix
 {
     class GameManager
     {
-        private Form _xonixGame;
-        private GameArea _gameArea = new GameArea();
+        private const int MAP_WIDTH = 1000;
+        private const int MAP_HEIGHT = 600;
+        private Form xonixGame;
+        private Graphics xonixGraphic;
+        private GameArea gameArea;
 
-        public GameManager(Form xonixGame)
+        public GameManager(Form xonixGame, Graphics graphic)
         {
-            _xonixGame = xonixGame;
+            this.xonixGame = xonixGame;
+            xonixGraphic = graphic;
+            gameArea = new GameArea(MAP_WIDTH, MAP_HEIGHT);
         }
 
         public void StartGame()
@@ -25,7 +26,7 @@ namespace Xonix
 
         private void DrawGameArea()
         {
-            _xonixGame.Controls.AddRange(_gameArea.Fields.ToArray());
+            gameArea.GenerateMap(xonixGraphic);
         }
     }
 }
