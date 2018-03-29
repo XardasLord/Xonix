@@ -6,7 +6,8 @@ namespace Xonix
     {
         public Point Location { get; private set; }
         private Graphics graphic;
-        
+        private SolidBrush brush = new SolidBrush(Color.Blue);
+
         /// <summary>
         /// Initializate player with default spawn location
         /// </summary>
@@ -19,8 +20,14 @@ namespace Xonix
         }
 
         public void Draw()
-        {   
-            graphic.FillRectangle(new SolidBrush(Color.Blue), Location.X, Location.Y, 10, 10);
+        {
+            graphic.FillRectangle(brush, Location.X, Location.Y, 10, 10);
+        }
+
+        public void Move(int moveX, int moveY)
+        {
+            Location = new Point(Location.X + moveX, Location.Y + moveY);
+            Draw();
         }
     }
 }

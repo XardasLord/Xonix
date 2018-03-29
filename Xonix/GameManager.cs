@@ -16,21 +16,39 @@ namespace Xonix
             this.xonixGame = xonixGame;
             xonixGraphic = graphic;
             gameArea = new GameArea(MAP_WIDTH, MAP_HEIGHT);
+
+            this.xonixGame.KeyUp += MovePlayer;
         }
 
         public void StartGame()
         {
-            DrawGameArea();
-        }
-
-        private void DrawGameArea()
-        {
             gameArea.GenerateMap(xonixGraphic);
+            gameArea.SpawnPlayer();
         }
 
-        private void SpawnPlayer()
+        private void MovePlayer(object sender, KeyEventArgs e)
         {
+            int moveX = 0, moveY = 0;
 
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    moveY = -10;
+                    break;
+                case Keys.Down:
+                    moveY = 10;
+                    break;
+                case Keys.Left:
+                    moveX = -10;
+                    break;
+                case Keys.Right:
+                    moveX = 10;
+                    break;
+                default:
+                    return;
+            }
+
+            //gameArea.MovePlayer(moveX, moveY);
         }
     }
 }

@@ -30,7 +30,6 @@ namespace Xonix
 
             PrepareFields();
             DrawFields();
-            SpawnPlayer();
         }
 
         private void PrepareFields()
@@ -86,10 +85,15 @@ namespace Xonix
             }
         }
 
-        private void SpawnPlayer()
+        public void SpawnPlayer()
         {
             Player = new Player(PLAYER_START_X, PLAYER_START_Y, graphic);
             Player.Draw();
+        }
+
+        public void MovePlayer(int moveX, int moveY)
+        {
+            Player.Move(moveX, moveY);
         }
     }
 }
