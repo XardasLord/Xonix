@@ -20,6 +20,7 @@ namespace Xonix
 
         private void GameTimer_Tick(object sender, System.EventArgs e)
         {
+            gameManager.MovePlayer();
             GameAreaPanel.Invalidate();
         }
     }

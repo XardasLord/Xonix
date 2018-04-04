@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Input;
 
 namespace Xonix
 {
@@ -26,7 +27,7 @@ namespace Xonix
             Fields = new Field[height/FIELD_SIZE, width/FIELD_SIZE];
         }
 
-        public void GenerateMap(Graphics graphic)
+        public void DrawMap(Graphics graphic)
         {
             this.graphic = graphic;
 
@@ -94,17 +95,33 @@ namespace Xonix
         private void SpawnPlayer()
         {
             Player = new Player(PLAYER_START_X, PLAYER_START_Y, graphic);
-            Player.Move(0, 0, graphic);
+            Player.Move();
 
             IsPlayerSpawned = true;
         }
 
-        public void MovePlayer(int moveX, int moveY, Graphics graphic)
+        public void MovePlayer()
+        {
+            int moveX = 0, moveY = 0;
+
+            if (Keyboard.IsKeyDown(Key.Up))
+                moveY = -10;
+            else if (Keyboard.IsKeyDown(Key.Down))
+                moveY = 10;
+            else if (Keyboard.IsKeyDown(Key.Left))
+                moveX = -10;
+            else if (Keyboard.IsKeyDown(Key.Right))
+                moveX = 10;
+
+            Player.Move(moveX, moveY);
+        }
+
+        public void DrawPlayer()
         {
             if (IsPlayerSpawned == false)
                 SpawnPlayer();
 
-            Player.Move(moveX, moveY, graphic);
+            Player.Draw(graphic);
         }
     }
 }

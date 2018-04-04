@@ -5,7 +5,6 @@ namespace Xonix
     class Player
     {
         public Point Location { get; private set; }
-        private Graphics graphic;
         private SolidBrush brush = new SolidBrush(Color.Blue);
 
         /// <summary>
@@ -16,20 +15,16 @@ namespace Xonix
         public Player(int x, int y, Graphics graphic)
         {
             Location = new Point(x, y);
-            this.graphic = graphic;
         }
 
-        private void Draw()
+        public void Draw(Graphics graphic)
         {
             graphic.FillRectangle(brush, Location.X, Location.Y, 10, 10);
         }
 
-        public void Move(int moveX, int moveY, Graphics graphic)
+        public void Move(int moveX = 0, int moveY = 0)
         {
-            this.graphic = graphic;
-
             Location = new Point(Location.X + moveX, Location.Y + moveY);
-            Draw();
         }
     }
 }

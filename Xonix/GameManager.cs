@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Windows.Input;
 
 namespace Xonix
 {
@@ -19,26 +18,13 @@ namespace Xonix
         {
             xonixGraphic = graphic;
             
-            gameArea.GenerateMap(xonixGraphic);
-            MovePlayer();
+            gameArea.DrawMap(xonixGraphic);
+            gameArea.DrawPlayer();
         }
 
-        private void MovePlayer()
+        public void MovePlayer()
         {
-            //TODO: Move this logic to the game area
-
-            int moveX = 0, moveY = 0;
-
-            if(Keyboard.IsKeyDown(Key.Up))
-                moveY = -10;
-            else if(Keyboard.IsKeyDown(Key.Down))
-                moveY = 10;
-            else if (Keyboard.IsKeyDown(Key.Left))
-                moveX = -10;
-            else if (Keyboard.IsKeyDown(Key.Right))
-                moveX = 10;
-            
-            gameArea.MovePlayer(moveX, moveY, xonixGraphic);
+            gameArea.MovePlayer();
         }
     }
 }
