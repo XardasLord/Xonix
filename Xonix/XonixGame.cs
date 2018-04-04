@@ -4,17 +4,23 @@ namespace Xonix
 {
     public partial class XonixGame : Form
     {
-        private GameManager gameManager;
+        private GameManager gameManager = new GameManager();
 
         public XonixGame()
         {
             InitializeComponent();
+
+            GameTimer.Start();
         }
 
         private void GameAreaPanel_Paint(object sender, PaintEventArgs e)
         {
-            gameManager = new GameManager(this, e.Graphics);
-            gameManager.StartGame();
+            gameManager.DrawEverything(e.Graphics);
+        }
+
+        private void GameTimer_Tick(object sender, System.EventArgs e)
+        {
+            GameAreaPanel.Invalidate();
         }
     }
 }

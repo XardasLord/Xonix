@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace Xonix
 {
@@ -7,48 +7,38 @@ namespace Xonix
     {
         private const int MAP_WIDTH = 1000;
         private const int MAP_HEIGHT = 600;
-        private Form xonixGame;
         private Graphics xonixGraphic;
         private GameArea gameArea;
 
-        public GameManager(Form xonixGame, Graphics graphic)
+        public GameManager()
         {
-            this.xonixGame = xonixGame;
-            xonixGraphic = graphic;
             gameArea = new GameArea(MAP_WIDTH, MAP_HEIGHT);
-
-            this.xonixGame.KeyUp += MovePlayer;
         }
 
-        public void StartGame()
+        public void DrawEverything(Graphics graphic)
         {
+            xonixGraphic = graphic;
+            
             gameArea.GenerateMap(xonixGraphic);
-            gameArea.SpawnPlayer();
+            MovePlayer();
         }
 
-        private void MovePlayer(object sender, KeyEventArgs e)
+        private void MovePlayer()
         {
+            //TODO: Move this logic to the game area
+
             int moveX = 0, moveY = 0;
 
-            switch (e.KeyCode)
-            {
-                case Keys.Up:
-                    moveY = -10;
-                    break;
-                case Keys.Down:
-                    moveY = 10;
-                    break;
-                case Keys.Left:
-                    moveX = -10;
-                    break;
-                case Keys.Right:
-                    moveX = 10;
-                    break;
-                default:
-                    return;
-            }
-
-            //gameArea.MovePlayer(moveX, moveY);
+            if(Keyboard.IsKeyDown(Key.Up))
+                moveY = -10;
+            else if(Keyboard.IsKeyDown(Key.Down))
+                moveY = 10;
+            else if (Keyboard.IsKeyDown(Key.Left))
+                moveX = -10;
+            else if (Keyboard.IsKeyDown(Key.Right))
+                moveX = 10;
+            
+            gameArea.MovePlayer(moveX, moveY, xonixGraphic);
         }
     }
 }

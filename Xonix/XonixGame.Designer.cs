@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.GameAreaPanel = new System.Windows.Forms.Panel();
+            this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // GameAreaPanel
@@ -41,6 +43,10 @@
             this.GameAreaPanel.Size = new System.Drawing.Size(1000, 600);
             this.GameAreaPanel.TabIndex = 0;
             this.GameAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.GameAreaPanel_Paint);
+            // 
+            // GameTimer
+            // 
+            this.GameTimer.Tick += new System.EventHandler(this.GameTimer_Tick);
             // 
             // XonixGame
             // 
@@ -61,6 +67,7 @@
         #endregion
 
         private System.Windows.Forms.Panel GameAreaPanel;
+        private System.Windows.Forms.Timer GameTimer;
     }
 }
 

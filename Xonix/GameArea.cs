@@ -12,6 +12,8 @@ namespace Xonix
 
         public Field[,] Fields { get; private set; }
         public Player Player { get; private set; }
+        public bool IsMapGenerated { get; private set; } = false;
+        public bool IsPlayerSpawned { get; private set; } = false;
 
         private Graphics graphic;
         private int width; // Columns
@@ -28,8 +30,12 @@ namespace Xonix
         {
             this.graphic = graphic;
 
-            PrepareFields();
+            if(IsMapGenerated == false)
+                PrepareFields();
+
             DrawFields();
+
+            IsMapGenerated = true;
         }
 
         private void PrepareFields()
@@ -85,15 +91,20 @@ namespace Xonix
             }
         }
 
-        public void SpawnPlayer()
+        private void SpawnPlayer()
         {
             Player = new Player(PLAYER_START_X, PLAYER_START_Y, graphic);
-            Player.Draw();
+            Player.Move(0, 0, graphic);
+
+            IsPlayerSpawned = true;
         }
 
-        public void MovePlayer(int moveX, int moveY)
+        public void MovePlayer(int moveX, int moveY, Graphics graphic)
         {
-            Player.Move(moveX, moveY);
+            if (IsPlayerSpawned == false)
+                SpawnPlayer();
+
+            Player.Move(moveX, moveY, graphic);
         }
     }
 }

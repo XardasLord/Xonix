@@ -19,13 +19,15 @@ namespace Xonix
             this.graphic = graphic;
         }
 
-        public void Draw()
+        private void Draw()
         {
             graphic.FillRectangle(brush, Location.X, Location.Y, 10, 10);
         }
 
-        public void Move(int moveX, int moveY)
+        public void Move(int moveX, int moveY, Graphics graphic)
         {
+            this.graphic = graphic;
+
             Location = new Point(Location.X + moveX, Location.Y + moveY);
             Draw();
         }
