@@ -37,7 +37,7 @@ namespace Xonix
         {
             int tmpX = 0, tmpY = 0;
 
-            for(var row = 0; row < height/ ConstantsSettings.FIELD_SIZE; row++)
+            for(var row = 0; row < height / ConstantsSettings.FIELD_SIZE; row++)
             {
                 for (var col = 0; col < width / ConstantsSettings.FIELD_SIZE; col++)
                 {
@@ -65,7 +65,12 @@ namespace Xonix
 
         private FieldState SpecifyDefaultState(int x, int y)
         {
-            if(x == 0 || x == 10 || y == 0 || y == 10 || x == 990 || x == 980 || y == 590 || y == 580)
+            if(x == 0 || x == ConstantsSettings.FIELD_SIZE ||
+               y == 0 || y == ConstantsSettings.FIELD_SIZE || 
+               x == ConstantsSettings.MAP_WIDTH - ConstantsSettings.FIELD_SIZE || 
+               x == ConstantsSettings.MAP_WIDTH - (ConstantsSettings.FIELD_SIZE * 2) || 
+               y == ConstantsSettings.MAP_HEIGHT - ConstantsSettings.FIELD_SIZE || 
+               y == ConstantsSettings.MAP_HEIGHT - (ConstantsSettings.FIELD_SIZE * 2))
             {
                 // Map Boundary
                 return FieldState.Outside;
@@ -97,15 +102,16 @@ namespace Xonix
         public void MovePlayer()
         {
             int moveX = 0, moveY = 0;
+            var value = ConstantsSettings.FIELD_SIZE;
 
             if (Keyboard.IsKeyDown(Key.Up))
-                moveY = -10;
+                moveY = -value;
             else if (Keyboard.IsKeyDown(Key.Down))
-                moveY = 10;
+                moveY = value;
             else if (Keyboard.IsKeyDown(Key.Left))
-                moveX = -10;
+                moveX = -value;
             else if (Keyboard.IsKeyDown(Key.Right))
-                moveX = 10;
+                moveX = value;
 
             Player.Move(moveX, moveY);
         }

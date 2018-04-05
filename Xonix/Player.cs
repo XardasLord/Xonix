@@ -19,7 +19,7 @@ namespace Xonix
 
         public void Draw(Graphics graphic)
         {
-            graphic.FillRectangle(brush, Location.X, Location.Y, 10, 10);
+            graphic.FillRectangle(brush, Location.X, Location.Y, ConstantsSettings.FIELD_WIDTH, ConstantsSettings.FIELD_HEIGHT);
         }
 
         public void Move(int moveX = 0, int moveY = 0)
