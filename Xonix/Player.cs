@@ -24,7 +24,16 @@ namespace Xonix
 
         public void Move(int moveX = 0, int moveY = 0)
         {
+            if (CanMove(moveX, moveY) == false)
+                return;
+
             Location = new Point(Location.X + moveX, Location.Y + moveY);
+        }
+
+        private bool CanMove(int moveX, int moveY)
+        {
+            // Check for map boundary
+            return !(Location.X + moveX < 0 || Location.X + moveX > ConstantsSettings.MAP_WIDTH - 10 || Location.Y + moveY < 0 || Location.Y + moveY > ConstantsSettings.MAP_HEIGHT - 10);
         }
     }
 }

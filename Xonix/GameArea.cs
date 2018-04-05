@@ -5,12 +5,6 @@ namespace Xonix
 {
     class GameArea
     {
-        private const int FIELD_SIZE = 10;
-        private const int FIELD_WIDTH = 20;
-        private const int FIELD_HEIGHT = 20;
-        private const int PLAYER_START_X = 10;
-        private const int PLAYER_START_Y = 10;
-
         public Field[,] Fields { get; private set; }
         public Player Player { get; private set; }
         public bool IsMapGenerated { get; private set; } = false;
@@ -24,7 +18,7 @@ namespace Xonix
         {
             this.width = width;
             this.height = height;
-            Fields = new Field[height/FIELD_SIZE, width/FIELD_SIZE];
+            Fields = new Field[height/ConstantsSettings.FIELD_SIZE, width/ConstantsSettings.FIELD_SIZE];
         }
 
         public void DrawMap(Graphics graphic)
@@ -43,9 +37,9 @@ namespace Xonix
         {
             int tmpX = 0, tmpY = 0;
 
-            for(var row = 0; row < height/FIELD_SIZE; row++)
+            for(var row = 0; row < height/ ConstantsSettings.FIELD_SIZE; row++)
             {
-                for (var col = 0; col < width / FIELD_SIZE; col++)
+                for (var col = 0; col < width / ConstantsSettings.FIELD_SIZE; col++)
                 {
                     var state = SpecifyDefaultState(tmpX, tmpY);
 
@@ -58,12 +52,12 @@ namespace Xonix
                     {
                         // Move to the next row
                         tmpX = 0;
-                        tmpY += FIELD_SIZE;
+                        tmpY += ConstantsSettings.FIELD_SIZE;
                     }
                     else
                     {
                         // Next column
-                        tmpX += FIELD_SIZE;
+                        tmpX += ConstantsSettings.FIELD_SIZE;
                     }
                 }
             }
@@ -88,13 +82,13 @@ namespace Xonix
 
             foreach(var field in Fields)
             {
-                graphic.FillRectangle(new SolidBrush(field.Color), field.Location.X, field.Location.Y, FIELD_WIDTH, FIELD_HEIGHT);
+                graphic.FillRectangle(new SolidBrush(field.Color), field.Location.X, field.Location.Y, ConstantsSettings.FIELD_WIDTH, ConstantsSettings.FIELD_HEIGHT);
             }
         }
 
         private void SpawnPlayer()
         {
-            Player = new Player(PLAYER_START_X, PLAYER_START_Y, graphic);
+            Player = new Player(ConstantsSettings.PLAYER_START_X, ConstantsSettings.PLAYER_START_Y, graphic);
             Player.Move();
 
             IsPlayerSpawned = true;
