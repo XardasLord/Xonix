@@ -1,4 +1,6 @@
-﻿namespace Xonix
+﻿using System.Drawing;
+
+namespace Xonix
 {
     public static class ConstantsSettings
     {
@@ -9,5 +11,6 @@
         public const int FIELD_HEIGHT = 20;
         public const int PLAYER_START_X = 10;
         public const int PLAYER_START_Y = 10;
+        public static readonly Color PLAYER_COLOR = Color.Blue;
     }
 }

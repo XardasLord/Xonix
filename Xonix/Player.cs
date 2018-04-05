@@ -5,7 +5,7 @@ namespace Xonix
     class Player
     {
         public Point Location { get; private set; }
-        private SolidBrush brush = new SolidBrush(Color.Blue);
+        private SolidBrush brush = new SolidBrush(ConstantsSettings.PLAYER_COLOR);
 
         /// <summary>
         /// Initializate player with default spawn location
